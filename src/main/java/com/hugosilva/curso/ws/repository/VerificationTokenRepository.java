@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface VerificationTokenRepository extends MongoRepository<VerificationToken, String> {
 
-    Optional<VerificationToken> findByToken(String token);
+	Optional<VerificationToken> findByToken(String token);
 
-    Optional<VerificationToken> findByUser(User user);
+	Optional<VerificationToken> findByUser(User user);
 }

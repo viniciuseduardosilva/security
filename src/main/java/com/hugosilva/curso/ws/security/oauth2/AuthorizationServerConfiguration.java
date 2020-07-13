@@ -1,6 +1,5 @@
 package com.hugosilva.curso.ws.security.oauth2;
 
-import com.hugosilva.curso.ws.services.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -16,6 +15,8 @@ import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 
+import com.hugosilva.curso.ws.services.CustomUserDetailsService;
+
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
@@ -24,7 +25,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     private String cliente = "cliente";
     private String clientSecret = "123";
     private static final String RESOURCE_ID = "restservice";
-    @Autowired
+    @Autowired	
     @Qualifier("authenticationManagerBean")
     private AuthenticationManager authenticationManager;
     @Autowired

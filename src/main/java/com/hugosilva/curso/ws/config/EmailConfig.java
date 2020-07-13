@@ -10,8 +10,8 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:application.properties")
 public class EmailConfig {
 
-    @Bean
-    public EmailService emailService(){
-        return new SmtpEmailService();
-    }
+	@Bean
+	public EmailService emailService() {
+		return new SmtpEmailService();
+	}
 }

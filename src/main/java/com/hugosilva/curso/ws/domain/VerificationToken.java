@@ -12,86 +12,89 @@ import java.util.Objects;
 @Document
 public class VerificationToken implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private static final int EXPIRATION = 60*24;
-    @Id
-    private String id;
-    private String token;
+	private static final int EXPIRATION = 60 * 24;
+	@Id
+	private String id;
+	private String token;
 
-    @DBRef(lazy = true)
-    private User user;
-    private Date expiryDate;
+	@DBRef(lazy = true)
+	private User user;
+	private Date expiryDate;
 
-    public VerificationToken() { }
+	public VerificationToken() {
+	}
 
-    public VerificationToken(String token) {
-        this.token = token;
-        this.expiryDate = calculateExpiryDate(EXPIRATION);
-    }
+	public VerificationToken(String token) {
+		this.token = token;
+		this.expiryDate = calculateExpiryDate(EXPIRATION);
+	}
 
-    public VerificationToken(final String token, final User user) {
-        this.token = token;
-        this.user = user;
-        this.expiryDate = calculateExpiryDate(EXPIRATION);
-    }
+	public VerificationToken(final String token, final User user) {
+		this.token = token;
+		this.user = user;
+		this.expiryDate = calculateExpiryDate(EXPIRATION);
+	}
 
-    public String getId() {
-        return id;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public String getToken() {
-        return token;
-    }
+	public String getToken() {
+		return token;
+	}
 
-    public void setToken(String token) {
-        this.token = token;
-    }
+	public void setToken(String token) {
+		this.token = token;
+	}
 
-    public User getUser() {
-        return user;
-    }
+	public User getUser() {
+		return user;
+	}
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-    public Date getExpiryDate() {
-        return expiryDate;
-    }
+	public Date getExpiryDate() {
+		return expiryDate;
+	}
 
-    public void setExpiryDate(Date expiryDate) {
-        this.expiryDate = expiryDate;
-    }
+	public void setExpiryDate(Date expiryDate) {
+		this.expiryDate = expiryDate;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof VerificationToken)) return false;
-        VerificationToken that = (VerificationToken) o;
-        return Objects.equals(id, that.id);
-    }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (!(o instanceof VerificationToken))
+			return false;
+		VerificationToken that = (VerificationToken) o;
+		return Objects.equals(id, that.id);
+	}
 
-    @Override
-    public int hashCode() {
+	@Override
+	public int hashCode() {
 
-        return Objects.hash(id);
-    }
+		return Objects.hash(id);
+	}
 
-    private Date calculateExpiryDate(final int expiryTimeInMinutes) {
-        final Calendar cal = Calendar.getInstance();
-        cal.setTimeInMillis(new Date().getTime());
-        cal.add(Calendar.MINUTE, expiryTimeInMinutes);
-        return new Date(cal.getTime().getTime());
-    }
+	private Date calculateExpiryDate(final int expiryTimeInMinutes) {
+		final Calendar cal = Calendar.getInstance();
+		cal.setTimeInMillis(new Date().getTime());
+		cal.add(Calendar.MINUTE, expiryTimeInMinutes);
+		return new Date(cal.getTime().getTime());
+	}
 
-    public void updateToken(final String token) {
-        this.token = token;
-        this.expiryDate = calculateExpiryDate(EXPIRATION);
-    }
+	public void updateToken(final String token) {
+		this.token = token;
+		this.expiryDate = calculateExpiryDate(EXPIRATION);
+	}
 
 }

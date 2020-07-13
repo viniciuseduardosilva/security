@@ -13,119 +13,123 @@ import java.util.Objects;
 @Document()
 public class User implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    private String id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String password;
-    private boolean enabled;
+	private static final long serialVersionUID = 1L;
+	@Id
+	private String id;
+	private String firstName;
+	private String lastName;
+	private String email;
+	private String password;
+	private boolean enabled;
 
-    @DBRef (lazy = true)
-    private List<Role> roles = new ArrayList<>();
+	@DBRef(lazy = true)
+	private List<Role> roles = new ArrayList<>();
 
+	public User() {
+	}
 
-    public User() { }
+	public User(String firstName, String lastName, String email) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+	}
 
-    public User(String firstName, String lastName, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
+	public User(String id, String firstName, String lastName, String email, String password, boolean enabled) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.enabled = enabled;
+	}
 
-    public User(String id, String firstName, String lastName, String email, String password, boolean enabled) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.enabled =  enabled;
-    }
+	public User(UserDTO userDTO) {
+		this.id = userDTO.getId();
+		this.firstName = userDTO.getFirstName();
+		this.lastName = userDTO.getLastName();
+		this.email = userDTO.getEmail();
+		this.password = userDTO.getPassword();
+	}
 
-    public User(UserDTO userDTO) {
-        this.id = userDTO.getId();
-        this.firstName = userDTO.getFirstName();
-        this.lastName = userDTO.getLastName();
-        this.email = userDTO.getEmail();
-        this.password = userDTO.getPassword();
-    }
-    public User(User user){
-        super();
-        this.id = user.getId();
-        this.firstName = user.getFirstName();
-        this.lastName = user.getLastName();
-        this.email = user.getEmail();
-        this.password = user.getPassword();
-        this.roles = user.getRoles();
-    }
-    public String getId() {
-        return id;
-    }
+	public User(User user) {
+		super();
+		this.id = user.getId();
+		this.firstName = user.getFirstName();
+		this.lastName = user.getLastName();
+		this.email = user.getEmail();
+		this.password = user.getPassword();
+		this.roles = user.getRoles();
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public List<Role> getRoles() {
-        return roles;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }
+	public List<Role> getRoles() {
+		return roles;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public boolean isEnabled() {
-        return enabled;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
+	public boolean isEnabled() {
+		return enabled;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id);
-    }
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 
-    @Override
-    public int hashCode() {
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (!(o instanceof User))
+			return false;
+		User user = (User) o;
+		return Objects.equals(id, user.id);
+	}
 
-        return Objects.hash(id);
-    }
+	@Override
+	public int hashCode() {
+
+		return Objects.hash(id);
+	}
 }
